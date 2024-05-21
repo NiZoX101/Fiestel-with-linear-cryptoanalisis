@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>727d620f-1c25-41ba-bf48-d0506061f1a5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Feistel.py</StartupFile>
+    <StartupFile>dif_cryptoanalisis.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="coding.py" />
+    <Compile Include="dif_cryptoanalisis.py" />
     <Compile Include="Feistel.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

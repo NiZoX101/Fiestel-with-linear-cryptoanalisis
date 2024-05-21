@@ -56,7 +56,7 @@ S3={
     14:1,
     15:2
     }
-P={
+E={
     1:3,
     2:4,
     3:1,
@@ -69,10 +69,9 @@ P={
     10:8,
     11:2,
     12:4
-
     }
 
-IP={
+P={
     1:8,
     2:7,
     3:3,
@@ -189,7 +188,7 @@ def analyze_ij(ij,num):
             for i in x1:
                 j=i+4*(num-1)
                 buf2.add(j)
-                buf1.add(P[j]+8)
+                buf1.add(E[j]+8)
             X[(x,y)]=buf1
             K[(x,y)]=buf2
             #print("final x: ",buf1)
@@ -205,16 +204,13 @@ def analyze_ij(ij,num):
                     if y&(1<<i):
                        y1.add((3-i)+(num-1)*3)
             #print("num of bites in j ",y1)
-            for i in IP:
-                if IP[i] in y1:
+            for i in P:
+                if P[i] in y1:
                     buf1.add(i)
             #print("Y,X:",buf1)
             Y[(x,y)]=buf1
             X[(x,y)]|=buf1
 
-    print("X: ",X)
-    print("Y: ",Y)
-    print("K: ",K)
     return X,Y,K
         #print(x1)
         #print(buf1)
@@ -222,6 +218,10 @@ def analyze_ij(ij,num):
 def equation(aff1,aff2,aff3,inp,key,s1,s2,s3):
     ci=fiestel(inp,key)
     X,Y,K1=analyze_ij(aff1,1)
+    print("for S1:")
+    print("X: ",X)
+    print("Y: ",Y)
+    print("K: ",K1)
     s1_lin=s1
     s2_lin=s2
     s3_lin=s3
@@ -249,6 +249,10 @@ def equation(aff1,aff2,aff3,inp,key,s1,s2,s3):
         #print(f"s1_lin[{key}]:{s1_lin[key]}")
 
     X,Y,K2=analyze_ij(aff2,2)
+    print("for S2:")
+    print("X: ",X)
+    print("Y: ",Y)
+    print("K: ",K2)
     for key in X:
         count=0
         #print("--------------------")
@@ -272,6 +276,10 @@ def equation(aff1,aff2,aff3,inp,key,s1,s2,s3):
         #print(f"s2_lin[{key}]:{s2_lin[key]}")
 
     X,Y,K3=analyze_ij(aff3,3)
+    print("for S3:")
+    print("X: ",X)
+    print("Y: ",Y)
+    print("K: ",K3)
     for key in X:
         count=0
         #print("--------------------")
@@ -306,13 +314,15 @@ def equation(aff1,aff2,aff3,inp,key,s1,s2,s3):
 
 # Вызываем функцию analyze_all() и передаем результаты в print_analyze()
 s1_result, s2_result, s3_result = analyze_all()
-print_analyze(s1_result, s2_result, s3_result)
+print ("S1:",s1_result)
+print ("S2: ",s2_result)
+print ("S3: ",s3_result)
 
 print("------------------------------------------------------------------------------------")
 aff1,aff2,aff3=new_ij(s1_result,s2_result,s3_result)
-print(aff1)
-print(aff2)
-print(aff3)
+print(f"(i,j) for S1:{aff1}")
+print(f"(i,j) for S2:{aff2}")
+print(f"(i,j) for S3:{aff3}")
 
 s1={}
 for i in aff1:

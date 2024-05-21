@@ -54,7 +54,7 @@ S3={
     14:1,
     15:2
     }
-P={
+E={
     1:3,
     2:4,
     3:1,
@@ -69,7 +69,7 @@ P={
     12:4
     }
 
-IP={
+P={
     1:8,
     2:7,
     3:3,
@@ -80,14 +80,15 @@ IP={
     8:6
     }
 
+
 def expansion_per(text):
     #x1=set()
     permut=set()
     #for i in range(0,8):
     #            if text&(1<<i):
     #               x1.add(8-i)
-    for p in P:
-        if P[p] in text:
+    for p in E:
+        if E[p] in text:
             permut.add(p)
     #print("permutation: ",permut)
     return permut
@@ -148,8 +149,8 @@ def analyze_s(text):
 
 def final_permutation(text):
     permut=set()
-    for p in IP:
-        if IP[p] in text:
+    for p in P:
+        if P[p] in text:
             permut.add(p)
     #print("permutation: ",permut)
     return permut
